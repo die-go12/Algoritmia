@@ -5,7 +5,7 @@ import os
 import io
 import uuid
 import shutil
-import time  # <-- 1. IMPORTAMOS time
+import time 
 
 # --- IMPORTACIONES DE TU PROYECTO ---
 from antlr4 import *
@@ -22,47 +22,39 @@ OUTPUT_FOLDER = os.path.join(BASE_DIR, "output")
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 # -----------------------------------------------------------------
-# 2. FUNCIÓN DE MOVIMIENTO SEGURO (A PRUEBA DE RACE CONDITIONS)
+# 2. FUNCIÓN DE MOVIMIENTO SEGURO
 # -----------------------------------------------------------------
 def safe_move_file(src, dst, max_retries=5, delay=0.3):
-    """
-    Intenta mover un archivo de forma robusta, reintentando si está bloqueado 
-    por otro proceso (Ej: [WinError 32]).
-    """
     if not os.path.exists(src):
-        return False # El archivo de origen no existe
-        
+        return False 
     for i in range(max_retries):
         try:
-            # Intento de mover el archivo
             shutil.move(src, dst)
-            return True # ¡Éxito!
-            
+            return True
         except PermissionError:
-            # [WinError 32] El archivo está bloqueado
-            print(f"⚠️ Archivo bloqueado '{os.path.basename(src)}', reintento {i+1}/{max_retries}...")
-            time.sleep(delay) # Esperamos un momento a que se libere
-            
+            print(f"⚠️ Archivo bloqueado '{os.path.basename(src)}', reintento {i+1}...")
+            time.sleep(delay)
         except Exception as e:
-            # Otro error (ej: disco lleno, etc.)
             print(f"❌ Error crítico moviendo archivo: {e}")
-            break # No seguir intentando
-            
-    # Si se agotan los reintentos
-    print(f"❌ No se pudo mover el archivo '{os.path.basename(src)}' después de {max_retries} intentos.")
+            break
     return False
-# -----------------------------------------------------------------
-
 
 @app.route("/")
 def home():
     return render_template("algoritmia.html")
 
-
 @app.route("/compile", methods=["POST"])
 def compile_algoritmia():
     data = request.get_json()
     code = data.get("code", "")
+    
+    # 1. CAPTURAR PARÁMETROS
+    entry_point = data.get("entryPoint", "Main").strip()
+    if not entry_point: entry_point = "Main"
+    
+    # --- NUEVO: Capturar el modo debug (booleano) ---
+    debug_mode = data.get("debug", False) 
+    # ------------------------------------------------
 
     if not code.strip():
         return jsonify({"error": "Código vacío"}), 400
@@ -80,33 +72,34 @@ def compile_algoritmia():
 
         executor = AlgoritmiaExecutor()
         executor.OUTPUT_DIR = OUTPUT_FOLDER
-        executor.DEBUG = False 
+        
+        # --- NUEVO: Configurar Debug dinámicamente ---
+        executor.DEBUG = debug_mode
+        if debug_mode:
+            print(f"🔧 MODO DEBUG ACTIVADO")
+            print(f"⚙️ Entry Point: {entry_point}")
+        # ---------------------------------------------
+        
+        executor.entry_point = entry_point
+        executor.output_filename = "salida"
         
         executor.visit(tree)
         
-        # NOTA: No necesitamos un time.sleep(0.5) aquí
-        # porque la función safe_move lo maneja de forma inteligente.
-
         file_id = str(uuid.uuid4())[:8]
         generated_files = {}
         extensions = ['.pdf', '.wav', '.mid', '.ly']
         
         for ext in extensions:
             src_name = "salida" + ext
-            dst_name = file_id + ext
+            dst_name = f"{entry_point}_{file_id}{ext}"
+            
             src_path = os.path.join(OUTPUT_FOLDER, src_name)
             dst_path = os.path.join(OUTPUT_FOLDER, dst_name)
             
-            # -----------------------------------------------------------------
-            # 3. USAMOS LA FUNCIÓN ROBUSTA EN LUGAR DE shutil.move
-            # -----------------------------------------------------------------
             if os.path.exists(src_path):
-                # Intentamos mover el archivo de forma segura
                 if safe_move_file(src_path, dst_path):
-                    # Solo si se movió con éxito, generamos la URL
                     generated_files[ext.replace('.', '')] = f"/download/{dst_name}"
                 else:
-                    # Si falla después de reintentos, lo marcamos como None
                     generated_files[ext.replace('.', '')] = None
             else:
                 generated_files[ext.replace('.', '')] = None
@@ -124,8 +117,12 @@ def compile_algoritmia():
 
     except Exception as e:
         sys.stdout = old_stdout
+        # Si hay error en debug, mostramos el stack trace en consola del servidor
+        if debug_mode:
+            import traceback
+            traceback.print_exc()
+            
         print(f"Error interno: {e}")
-        # Si el error fue al mover, new_stdout puede estar vacío
         return jsonify({"error": str(e), "stdout": new_stdout.getvalue() or "Error en el backend"}), 500
         
     finally:
@@ -133,7 +130,6 @@ def compile_algoritmia():
 
 @app.route("/download/<path:filename>")
 def download_file(filename):
-    # Esto ya está CORRECTO (as_attachment=False)
     return send_from_directory(OUTPUT_FOLDER, filename, as_attachment=False)
 
 if __name__ == "__main__":

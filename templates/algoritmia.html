@@ -69,7 +69,7 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
-            padding-bottom: 50px; /* Espacio extra al final */
+            padding-bottom: 50px;
             animation: slideUp 0.8s ease-out;
         }
 
@@ -137,14 +137,88 @@
         textarea::-webkit-scrollbar-track { background: var(--editor-bg); }
         textarea::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
 
-        /* Botón de Acción */
+        /* Botón de Acción y Inputs */
         .controls {
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             padding: 15px 20px;
             background: var(--card-bg);
             border-top: 1px solid var(--border);
+            gap: 20px; /* Espacio entre elementos */
         }
+
+        /* Estilo para el input del Entry Point */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .input-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        #entryInput {
+            background-color: var(--editor-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            width: 180px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        #entryInput:focus {
+            border-color: var(--primary);
+        }
+
+        /* --- ESTILOS DEL TOGGLE DEBUG --- */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 40px;
+            height: 22px;
+            background-color: var(--border);
+            border-radius: 22px;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        #debugCheck:checked + .toggle-switch {
+            background-color: var(--accent); /* Color rosado/rojo para debug */
+        }
+
+        #debugCheck:checked + .toggle-switch::after {
+            transform: translateX(18px);
+        }
+
+        /* Esconder el checkbox real */
+        #debugCheck { display: none; }
+        /* ------------------------------- */
 
         #runBtn {
             background: linear-gradient(135deg, var(--primary), var(--accent));
@@ -160,6 +234,7 @@
             gap: 10px;
             transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            height: 46px; /* Altura fija para alinear con el input */
         }
 
         #runBtn:hover {
@@ -197,10 +272,10 @@
 
         #output {
             color: #ccc;
-            height: 150px;
+            height: 200px; /* Un poco más alto para ver logs */
             overflow-y: auto;
             white-space: pre-wrap;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         #output::-webkit-scrollbar { width: 8px; }
@@ -212,7 +287,7 @@
             background: var(--card-bg);
             border-radius: 12px;
             padding: 20px;
-            display: none; /* Oculto por defecto */
+            display: none;
             border: 1px solid var(--border);
             animation: fadeIn 0.5s ease;
         }
@@ -239,7 +314,6 @@
             height: 40px;
         }
 
-        /* --- NUEVO: ESTILOS VISOR PDF --- */
         .pdf-container {
             grid-column: 1 / -1;
             margin-top: 20px;
@@ -250,12 +324,11 @@
         
         embed {
             width: 100%;
-            height: 600px; /* Altura para ver bien la hoja */
+            height: 600px;
             border-radius: 8px;
             border: 1px solid #475569;
             background-color: #525659;
         }
-        /* ------------------------------- */
 
         .btn-download {
             display: flex;
@@ -310,15 +383,33 @@
             
             <div class="editor-wrapper">
                 <textarea id="editor" spellcheck="false"></textarea>
-                <pre id="placeholder">Main |:
-    <w> "Hola Mundo Musical"
-    (:) { C E G C5 } 
+                <pre id="placeholder">PianoSweep |:
+    note <- A0
+    while note <= C8 |:
+        <:> note
+        note <- note + 1
+    :|
 :|</pre>
             </div>
 
             <div class="controls">
+                
+                <!-- NUEVO: TOGGLE DEBUG -->
+                <label class="toggle-container" title="Activar logs detallados">
+                    <input type="checkbox" id="debugCheck">
+                    <div class="toggle-switch"></div>
+                    <span class="input-label" style="font-size: 0.8rem;">Modo Debug</span>
+                </label>
+                <!-- -------------------- -->
+
+                <!-- NUEVO: Input para el Entry Point -->
+                <div class="input-group">
+                    <span class="input-label">Procedimiento Inicial</span>
+                    <input type="text" id="entryInput" placeholder="Main" value="Main">
+                </div>
+
                 <button id="runBtn">
-                    <i class="fa-solid fa-play"></i> Compilar y Ejecutar
+                    <i class="fa-solid fa-play"></i> Compilar
                 </button>
             </div>
         </div>
@@ -357,7 +448,7 @@
                     </label>
                     <embed id="pdfViewer" src="" type="application/pdf" />
                 </div>
-                </div>
+            </div>
         </div>
 
     </div>
@@ -365,11 +456,13 @@
     <script>
         const editor = document.getElementById("editor");
         const placeholder = document.getElementById("placeholder");
+        const entryInput = document.getElementById("entryInput");
+        const debugCheck = document.getElementById("debugCheck"); // Referencia al nuevo checkbox
         const outputDiv = document.getElementById("output");
         const resultsArea = document.getElementById("results-area");
         const runBtn = document.getElementById("runBtn");
         const audioPlayer = document.getElementById("audioPlayer");
-        const pdfViewer = document.getElementById("pdfViewer"); // NUEVA REFERENCIA
+        const pdfViewer = document.getElementById("pdfViewer");
 
         // Placeholder logic
         editor.addEventListener("input", () => {
@@ -378,8 +471,11 @@
 
         document.getElementById("runBtn").onclick = async () => {
             const code = editor.value;
+            const entryPoint = entryInput.value || "Main"; // Capturamos el valor
+            const isDebug = debugCheck.checked; // Capturamos el estado del debug
+
             if (!code.trim()) {
-                outputDiv.innerText = "⚠️ Error: El código está vacío.";
+                outputDiv.innerText = "Error: El código está vacío.";
                 return;
             }
 
@@ -387,19 +483,29 @@
             runBtn.disabled = true;
             runBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando...';
             outputDiv.style.color = "#fbbf24";
-            outputDiv.innerText = ">> Iniciando compilación...\n>> Generando AST...\n>> Sintetizando audio...";
+            
+            // Mensaje de estado dinámico
+            let statusMsg = `>> Compilando desde '${entryPoint}'...\n`;
+            if (isDebug) statusMsg += `>> [DEBUG ACTIVADO] Generando logs detallados...\n`;
+            statusMsg += `>> Generando AST...\n>> Sintetizando audio...`;
+            
+            outputDiv.innerText = statusMsg;
             resultsArea.style.display = "none";
             
-            // Limpiar reproductores anteriores
             audioPlayer.pause();
             audioPlayer.src = "";
-            pdfViewer.src = ""; // LIMPIAR PDF
+            pdfViewer.src = "";
 
             try {
                 const response = await fetch("/compile", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ code: code })
+                    // Enviamos todo al backend
+                    body: JSON.stringify({ 
+                        code: code,
+                        entryPoint: entryPoint,
+                        debug: isDebug
+                    })
                 });
 
                 const result = await response.json();
@@ -407,24 +513,23 @@
                 // Manejo de Errores
                 if (!response.ok || result.error) {
                     outputDiv.style.color = "#ef4444";
-                    outputDiv.innerText = `❌ ERROR DE COMPILACIÓN:\n${result.error || "Error desconocido."}`;
+                    outputDiv.innerText = `ERROR DE COMPILACIÓN:\n${result.error || "Error desconocido."}`;
                     if (result.stdout) outputDiv.innerText += `\n\n--- STDOUT ---\n${result.stdout}`;
                 } else {
                     // Éxito
                     outputDiv.style.color = "#4ade80";
-                    outputDiv.innerText = result.stdout || "✅ Compilación finalizada sin salida en consola.";
+                    outputDiv.innerText = result.stdout || "Compilación finalizada sin salida en consola.";
 
                     // Mostrar resultados si existen
                     if (result.wav) {
                         resultsArea.style.display = "block";
                         
-                        // Timestamp para evitar caché del navegador
                         const timestamp = new Date().getTime();
 
                         // Cargar el audio
                         audioPlayer.src = result.wav + "?t=" + timestamp;
                         
-                        // NUEVO: Cargar el PDF en el visor incrustado
+                        // Cargar el PDF
                         if (result.pdf) {
                             pdfViewer.src = result.pdf + "?t=" + timestamp + "#toolbar=0&navpanes=0&scrollbar=0";
                         }
@@ -437,11 +542,11 @@
 
             } catch (err) {
                 outputDiv.style.color = "#ef4444";
-                outputDiv.innerText = "❌ Error Crítico: No se pudo conectar con el servidor backend.\n" + err;
+                outputDiv.innerText = "Error Crítico: No se pudo conectar con el servidor backend.\n" + err;
             } finally {
                 // Restaurar botón
                 runBtn.disabled = false;
-                runBtn.innerHTML = '<i class="fa-solid fa-play"></i> Compilar y Ejecutar';
+                runBtn.innerHTML = '<i class="fa-solid fa-play"></i> Compilar';
             }
         };
 

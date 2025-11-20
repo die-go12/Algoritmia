@@ -1,4 +1,4 @@
-Main |:
+Hanoi |:
     src <- { C D E F G }
     dst <- {}
     aux <- {}

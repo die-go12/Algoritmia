@@ -1,4 +1,4 @@
-# Generated from C:/Users/Admin/PycharmProjects/PythonProject4/Algoritmia.g4 by ANTLR 4.13.2
+# Generated from C:/Users/Admin/Desktop/aaa/Algoritmia.g4 by ANTLR 4.13.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -10,92 +10,71 @@ else:
 
 def serializedATN():
     return [
-        4,1,37,243,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,35,192,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
-        7,20,2,21,7,21,2,22,7,22,1,0,5,0,48,8,0,10,0,12,0,51,9,0,1,0,1,0,
-        4,0,55,8,0,11,0,12,0,56,4,0,59,8,0,11,0,12,0,60,1,0,1,0,1,1,1,1,
-        3,1,67,8,1,1,1,1,1,4,1,71,8,1,11,1,12,1,72,1,1,1,1,1,1,1,2,4,2,79,
-        8,2,11,2,12,2,80,1,3,1,3,4,3,85,8,3,11,3,12,3,86,5,3,89,8,3,10,3,
-        12,3,92,9,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,3,4,103,8,4,1,5,
-        1,5,1,5,1,5,1,6,1,6,1,6,1,7,1,7,4,7,114,8,7,11,7,12,7,115,1,8,1,
-        8,3,8,120,8,8,1,9,1,9,4,9,124,8,9,11,9,12,9,125,1,10,1,10,1,10,1,
-        10,4,10,132,8,10,11,10,12,10,133,1,10,1,10,1,10,1,10,1,10,4,10,141,
-        8,10,11,10,12,10,142,1,10,1,10,1,10,3,10,148,8,10,1,11,1,11,4,11,
-        152,8,11,11,11,12,11,153,5,11,156,8,11,10,11,12,11,159,9,11,1,12,
-        1,12,1,12,1,12,4,12,165,8,12,11,12,12,12,166,1,12,1,12,1,12,1,13,
-        1,13,5,13,174,8,13,10,13,12,13,177,9,13,1,14,1,14,1,14,1,14,1,15,
-        1,15,1,15,1,15,1,15,1,15,1,16,1,16,1,17,1,17,1,17,5,17,194,8,17,
-        10,17,12,17,197,9,17,1,18,1,18,1,18,5,18,202,8,18,10,18,12,18,205,
-        9,18,1,19,1,19,1,19,5,19,210,8,19,10,19,12,19,213,9,19,1,20,1,20,
-        1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,
-        3,20,230,8,20,1,21,1,21,3,21,234,8,21,1,21,1,21,1,22,4,22,239,8,
-        22,11,22,12,22,240,1,22,0,0,23,0,2,4,6,8,10,12,14,16,18,20,22,24,
-        26,28,30,32,34,36,38,40,42,44,0,4,1,0,6,7,1,0,15,20,1,0,21,22,1,
-        0,23,25,256,0,49,1,0,0,0,2,64,1,0,0,0,4,78,1,0,0,0,6,90,1,0,0,0,
-        8,102,1,0,0,0,10,104,1,0,0,0,12,108,1,0,0,0,14,111,1,0,0,0,16,119,
-        1,0,0,0,18,121,1,0,0,0,20,127,1,0,0,0,22,157,1,0,0,0,24,160,1,0,
-        0,0,26,171,1,0,0,0,28,178,1,0,0,0,30,182,1,0,0,0,32,188,1,0,0,0,
-        34,190,1,0,0,0,36,198,1,0,0,0,38,206,1,0,0,0,40,229,1,0,0,0,42,231,
-        1,0,0,0,44,238,1,0,0,0,46,48,5,36,0,0,47,46,1,0,0,0,48,51,1,0,0,
-        0,49,47,1,0,0,0,49,50,1,0,0,0,50,58,1,0,0,0,51,49,1,0,0,0,52,54,
-        3,2,1,0,53,55,5,36,0,0,54,53,1,0,0,0,55,56,1,0,0,0,56,54,1,0,0,0,
-        56,57,1,0,0,0,57,59,1,0,0,0,58,52,1,0,0,0,59,60,1,0,0,0,60,58,1,
-        0,0,0,60,61,1,0,0,0,61,62,1,0,0,0,62,63,5,0,0,1,63,1,1,0,0,0,64,
-        66,5,33,0,0,65,67,3,4,2,0,66,65,1,0,0,0,66,67,1,0,0,0,67,68,1,0,
-        0,0,68,70,5,1,0,0,69,71,5,36,0,0,70,69,1,0,0,0,71,72,1,0,0,0,72,
-        70,1,0,0,0,72,73,1,0,0,0,73,74,1,0,0,0,74,75,3,6,3,0,75,76,5,2,0,
-        0,76,3,1,0,0,0,77,79,5,34,0,0,78,77,1,0,0,0,79,80,1,0,0,0,80,78,
-        1,0,0,0,80,81,1,0,0,0,81,5,1,0,0,0,82,84,3,8,4,0,83,85,5,36,0,0,
-        84,83,1,0,0,0,85,86,1,0,0,0,86,84,1,0,0,0,86,87,1,0,0,0,87,89,1,
-        0,0,0,88,82,1,0,0,0,89,92,1,0,0,0,90,88,1,0,0,0,90,91,1,0,0,0,91,
-        7,1,0,0,0,92,90,1,0,0,0,93,103,3,10,5,0,94,103,3,12,6,0,95,103,3,
-        14,7,0,96,103,3,20,10,0,97,103,3,24,12,0,98,103,3,26,13,0,99,103,
-        3,18,9,0,100,103,3,28,14,0,101,103,3,30,15,0,102,93,1,0,0,0,102,
-        94,1,0,0,0,102,95,1,0,0,0,102,96,1,0,0,0,102,97,1,0,0,0,102,98,1,
-        0,0,0,102,99,1,0,0,0,102,100,1,0,0,0,102,101,1,0,0,0,103,9,1,0,0,
-        0,104,105,5,34,0,0,105,106,5,3,0,0,106,107,3,32,16,0,107,11,1,0,
-        0,0,108,109,5,4,0,0,109,110,5,34,0,0,110,13,1,0,0,0,111,113,5,5,
-        0,0,112,114,3,16,8,0,113,112,1,0,0,0,114,115,1,0,0,0,115,113,1,0,
-        0,0,115,116,1,0,0,0,116,15,1,0,0,0,117,120,5,31,0,0,118,120,3,32,
-        16,0,119,117,1,0,0,0,119,118,1,0,0,0,120,17,1,0,0,0,121,123,7,0,
-        0,0,122,124,3,32,16,0,123,122,1,0,0,0,124,125,1,0,0,0,125,123,1,
-        0,0,0,125,126,1,0,0,0,126,19,1,0,0,0,127,128,5,8,0,0,128,129,3,32,
-        16,0,129,131,5,1,0,0,130,132,5,36,0,0,131,130,1,0,0,0,132,133,1,
-        0,0,0,133,131,1,0,0,0,133,134,1,0,0,0,134,135,1,0,0,0,135,136,3,
-        22,11,0,136,147,5,2,0,0,137,138,5,9,0,0,138,140,5,1,0,0,139,141,
-        5,36,0,0,140,139,1,0,0,0,141,142,1,0,0,0,142,140,1,0,0,0,142,143,
-        1,0,0,0,143,144,1,0,0,0,144,145,3,22,11,0,145,146,5,2,0,0,146,148,
-        1,0,0,0,147,137,1,0,0,0,147,148,1,0,0,0,148,21,1,0,0,0,149,151,3,
-        8,4,0,150,152,5,36,0,0,151,150,1,0,0,0,152,153,1,0,0,0,153,151,1,
-        0,0,0,153,154,1,0,0,0,154,156,1,0,0,0,155,149,1,0,0,0,156,159,1,
-        0,0,0,157,155,1,0,0,0,157,158,1,0,0,0,158,23,1,0,0,0,159,157,1,0,
-        0,0,160,161,5,10,0,0,161,162,3,32,16,0,162,164,5,1,0,0,163,165,5,
-        36,0,0,164,163,1,0,0,0,165,166,1,0,0,0,166,164,1,0,0,0,166,167,1,
-        0,0,0,167,168,1,0,0,0,168,169,3,22,11,0,169,170,5,2,0,0,170,25,1,
-        0,0,0,171,175,5,33,0,0,172,174,3,32,16,0,173,172,1,0,0,0,174,177,
-        1,0,0,0,175,173,1,0,0,0,175,176,1,0,0,0,176,27,1,0,0,0,177,175,1,
-        0,0,0,178,179,5,34,0,0,179,180,5,11,0,0,180,181,3,32,16,0,181,29,
-        1,0,0,0,182,183,5,12,0,0,183,184,5,34,0,0,184,185,5,13,0,0,185,186,
-        3,32,16,0,186,187,5,14,0,0,187,31,1,0,0,0,188,189,3,34,17,0,189,
-        33,1,0,0,0,190,195,3,36,18,0,191,192,7,1,0,0,192,194,3,36,18,0,193,
-        191,1,0,0,0,194,197,1,0,0,0,195,193,1,0,0,0,195,196,1,0,0,0,196,
-        35,1,0,0,0,197,195,1,0,0,0,198,203,3,38,19,0,199,200,7,2,0,0,200,
-        202,3,38,19,0,201,199,1,0,0,0,202,205,1,0,0,0,203,201,1,0,0,0,203,
-        204,1,0,0,0,204,37,1,0,0,0,205,203,1,0,0,0,206,211,3,40,20,0,207,
-        208,7,3,0,0,208,210,3,40,20,0,209,207,1,0,0,0,210,213,1,0,0,0,211,
-        209,1,0,0,0,211,212,1,0,0,0,212,39,1,0,0,0,213,211,1,0,0,0,214,215,
-        5,26,0,0,215,216,3,32,16,0,216,217,5,27,0,0,217,230,1,0,0,0,218,
-        230,5,32,0,0,219,230,5,34,0,0,220,230,5,33,0,0,221,222,5,34,0,0,
-        222,223,5,13,0,0,223,224,3,32,16,0,224,225,5,14,0,0,225,230,1,0,
-        0,0,226,227,5,28,0,0,227,230,5,34,0,0,228,230,3,42,21,0,229,214,
-        1,0,0,0,229,218,1,0,0,0,229,219,1,0,0,0,229,220,1,0,0,0,229,221,
-        1,0,0,0,229,226,1,0,0,0,229,228,1,0,0,0,230,41,1,0,0,0,231,233,5,
-        29,0,0,232,234,3,44,22,0,233,232,1,0,0,0,233,234,1,0,0,0,234,235,
-        1,0,0,0,235,236,5,30,0,0,236,43,1,0,0,0,237,239,3,32,16,0,238,237,
-        1,0,0,0,239,240,1,0,0,0,240,238,1,0,0,0,240,241,1,0,0,0,241,45,1,
-        0,0,0,25,49,56,60,66,72,80,86,90,102,115,119,125,133,142,147,153,
-        157,166,175,195,203,211,229,233,240
+        7,20,2,21,7,21,1,0,4,0,46,8,0,11,0,12,0,47,1,0,1,0,1,1,1,1,3,1,54,
+        8,1,1,1,1,1,1,1,1,1,1,2,4,2,61,8,2,11,2,12,2,62,1,3,5,3,66,8,3,10,
+        3,12,3,69,9,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,3,4,80,8,4,1,5,
+        1,5,1,5,1,5,1,6,1,6,1,6,1,7,1,7,1,7,1,8,1,8,3,8,94,8,8,1,9,1,9,1,
+        9,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,3,10,109,8,10,
+        1,11,1,11,1,11,1,11,1,11,1,11,1,12,1,12,5,12,119,8,12,10,12,12,12,
+        122,9,12,1,13,1,13,1,13,1,13,1,13,1,14,1,14,1,14,1,14,1,14,1,14,
+        1,14,1,15,1,15,1,16,1,16,1,16,5,16,141,8,16,10,16,12,16,144,9,16,
+        1,17,1,17,1,17,5,17,149,8,17,10,17,12,17,152,9,17,1,18,1,18,1,18,
+        5,18,157,8,18,10,18,12,18,160,9,18,1,19,1,19,1,19,1,19,1,19,1,19,
+        1,19,1,19,1,19,1,19,1,19,1,19,1,19,1,19,1,19,1,19,1,19,3,19,179,
+        8,19,1,20,1,20,3,20,183,8,20,1,20,1,20,1,21,4,21,188,8,21,11,21,
+        12,21,189,1,21,0,0,22,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,
+        32,34,36,38,40,42,0,4,1,0,6,7,2,0,11,11,15,19,1,0,20,21,1,0,22,24,
+        196,0,45,1,0,0,0,2,51,1,0,0,0,4,60,1,0,0,0,6,67,1,0,0,0,8,79,1,0,
+        0,0,10,81,1,0,0,0,12,85,1,0,0,0,14,88,1,0,0,0,16,93,1,0,0,0,18,95,
+        1,0,0,0,20,98,1,0,0,0,22,110,1,0,0,0,24,116,1,0,0,0,26,123,1,0,0,
+        0,28,128,1,0,0,0,30,135,1,0,0,0,32,137,1,0,0,0,34,145,1,0,0,0,36,
+        153,1,0,0,0,38,178,1,0,0,0,40,180,1,0,0,0,42,187,1,0,0,0,44,46,3,
+        2,1,0,45,44,1,0,0,0,46,47,1,0,0,0,47,45,1,0,0,0,47,48,1,0,0,0,48,
+        49,1,0,0,0,49,50,5,0,0,1,50,1,1,0,0,0,51,53,5,32,0,0,52,54,3,4,2,
+        0,53,52,1,0,0,0,53,54,1,0,0,0,54,55,1,0,0,0,55,56,5,1,0,0,56,57,
+        3,6,3,0,57,58,5,2,0,0,58,3,1,0,0,0,59,61,5,33,0,0,60,59,1,0,0,0,
+        61,62,1,0,0,0,62,60,1,0,0,0,62,63,1,0,0,0,63,5,1,0,0,0,64,66,3,8,
+        4,0,65,64,1,0,0,0,66,69,1,0,0,0,67,65,1,0,0,0,67,68,1,0,0,0,68,7,
+        1,0,0,0,69,67,1,0,0,0,70,80,3,10,5,0,71,80,3,12,6,0,72,80,3,14,7,
+        0,73,80,3,20,10,0,74,80,3,22,11,0,75,80,3,24,12,0,76,80,3,18,9,0,
+        77,80,3,26,13,0,78,80,3,28,14,0,79,70,1,0,0,0,79,71,1,0,0,0,79,72,
+        1,0,0,0,79,73,1,0,0,0,79,74,1,0,0,0,79,75,1,0,0,0,79,76,1,0,0,0,
+        79,77,1,0,0,0,79,78,1,0,0,0,80,9,1,0,0,0,81,82,5,33,0,0,82,83,5,
+        3,0,0,83,84,3,30,15,0,84,11,1,0,0,0,85,86,5,4,0,0,86,87,5,33,0,0,
+        87,13,1,0,0,0,88,89,5,5,0,0,89,90,3,16,8,0,90,15,1,0,0,0,91,94,5,
+        30,0,0,92,94,3,30,15,0,93,91,1,0,0,0,93,92,1,0,0,0,94,17,1,0,0,0,
+        95,96,7,0,0,0,96,97,3,30,15,0,97,19,1,0,0,0,98,99,5,8,0,0,99,100,
+        3,30,15,0,100,101,5,1,0,0,101,102,3,6,3,0,102,108,5,2,0,0,103,104,
+        5,9,0,0,104,105,5,1,0,0,105,106,3,6,3,0,106,107,5,2,0,0,107,109,
+        1,0,0,0,108,103,1,0,0,0,108,109,1,0,0,0,109,21,1,0,0,0,110,111,5,
+        10,0,0,111,112,3,30,15,0,112,113,5,1,0,0,113,114,3,6,3,0,114,115,
+        5,2,0,0,115,23,1,0,0,0,116,120,5,32,0,0,117,119,3,30,15,0,118,117,
+        1,0,0,0,119,122,1,0,0,0,120,118,1,0,0,0,120,121,1,0,0,0,121,25,1,
+        0,0,0,122,120,1,0,0,0,123,124,5,33,0,0,124,125,5,11,0,0,125,126,
+        5,11,0,0,126,127,3,30,15,0,127,27,1,0,0,0,128,129,5,12,0,0,129,130,
+        5,11,0,0,130,131,5,33,0,0,131,132,5,13,0,0,132,133,3,30,15,0,133,
+        134,5,14,0,0,134,29,1,0,0,0,135,136,3,32,16,0,136,31,1,0,0,0,137,
+        142,3,34,17,0,138,139,7,1,0,0,139,141,3,34,17,0,140,138,1,0,0,0,
+        141,144,1,0,0,0,142,140,1,0,0,0,142,143,1,0,0,0,143,33,1,0,0,0,144,
+        142,1,0,0,0,145,150,3,36,18,0,146,147,7,2,0,0,147,149,3,36,18,0,
+        148,146,1,0,0,0,149,152,1,0,0,0,150,148,1,0,0,0,150,151,1,0,0,0,
+        151,35,1,0,0,0,152,150,1,0,0,0,153,158,3,38,19,0,154,155,7,3,0,0,
+        155,157,3,38,19,0,156,154,1,0,0,0,157,160,1,0,0,0,158,156,1,0,0,
+        0,158,159,1,0,0,0,159,37,1,0,0,0,160,158,1,0,0,0,161,162,5,21,0,
+        0,162,179,3,38,19,0,163,164,5,25,0,0,164,165,3,30,15,0,165,166,5,
+        26,0,0,166,179,1,0,0,0,167,179,5,31,0,0,168,179,5,33,0,0,169,179,
+        5,32,0,0,170,171,5,33,0,0,171,172,5,13,0,0,172,173,3,30,15,0,173,
+        174,5,14,0,0,174,179,1,0,0,0,175,176,5,27,0,0,176,179,5,33,0,0,177,
+        179,3,40,20,0,178,161,1,0,0,0,178,163,1,0,0,0,178,167,1,0,0,0,178,
+        168,1,0,0,0,178,169,1,0,0,0,178,170,1,0,0,0,178,175,1,0,0,0,178,
+        177,1,0,0,0,179,39,1,0,0,0,180,182,5,28,0,0,181,183,3,42,21,0,182,
+        181,1,0,0,0,182,183,1,0,0,0,183,184,1,0,0,0,184,185,5,29,0,0,185,
+        41,1,0,0,0,186,188,3,30,15,0,187,186,1,0,0,0,188,189,1,0,0,0,189,
+        187,1,0,0,0,189,190,1,0,0,0,190,43,1,0,0,0,14,47,53,62,67,79,93,
+        108,120,142,150,158,178,182,189
     ]
 
 class AlgoritmiaParser ( Parser ):
@@ -109,10 +88,10 @@ class AlgoritmiaParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "'|:'", "':|'", "'<-'", "'<?>'", "'<w>'", 
-                     "'(:)'", "'<:>'", "'if'", "'else'", "'while'", "'<<'", 
-                     "'8<'", "'['", "']'", "'='", "'/='", "'<'", "'>'", 
-                     "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'%'", 
-                     "'('", "')'", "'#'", "'{'", "'}'" ]
+                     "'(:)'", "'<:>'", "'if'", "'else'", "'while'", "'<'", 
+                     "'8'", "'['", "']'", "'='", "'/='", "'>'", "'<='", 
+                     "'>='", "'+'", "'-'", "'*'", "'/'", "'%'", "'('", "')'", 
+                     "'#'", "'{'", "'}'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
@@ -121,8 +100,8 @@ class AlgoritmiaParser ( Parser ):
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "STRING", "INT", 
-                      "ID_MAYUS", "ID_MINUSCULA", "WS", "NEWLINE", "COMMENT" ]
+                      "<INVALID>", "<INVALID>", "STRING", "INT", "ID_MAYUS", 
+                      "ID_MINUSCULA", "WS", "COMMENT" ]
 
     RULE_programa = 0
     RULE_procedimiento = 1
@@ -135,25 +114,23 @@ class AlgoritmiaParser ( Parser ):
     RULE_escritura_item = 8
     RULE_reproduccion = 9
     RULE_condicional = 10
-    RULE_instructions_block = 11
-    RULE_while = 12
-    RULE_llamada_proc = 13
-    RULE_addlista = 14
-    RULE_poplista = 15
-    RULE_expr = 16
-    RULE_comparacion = 17
-    RULE_aritmetica = 18
-    RULE_termino = 19
-    RULE_factor = 20
-    RULE_lista = 21
-    RULE_elementos_lista = 22
+    RULE_while = 11
+    RULE_llamada_proc = 12
+    RULE_addlista = 13
+    RULE_poplista = 14
+    RULE_expr = 15
+    RULE_comparacion = 16
+    RULE_aritmetica = 17
+    RULE_termino = 18
+    RULE_factor = 19
+    RULE_lista = 20
+    RULE_elementos_lista = 21
 
     ruleNames =  [ "programa", "procedimiento", "parametros", "instrucciones", 
                    "instruccion", "asignacion", "lectura", "escritura", 
-                   "escritura_item", "reproduccion", "condicional", "instructions_block", 
-                   "while", "llamada_proc", "addlista", "poplista", "expr", 
-                   "comparacion", "aritmetica", "termino", "factor", "lista", 
-                   "elementos_lista" ]
+                   "escritura_item", "reproduccion", "condicional", "while", 
+                   "llamada_proc", "addlista", "poplista", "expr", "comparacion", 
+                   "aritmetica", "termino", "factor", "lista", "elementos_lista" ]
 
     EOF = Token.EOF
     T__0=1
@@ -185,14 +162,12 @@ class AlgoritmiaParser ( Parser ):
     T__26=27
     T__27=28
     T__28=29
-    T__29=30
-    STRING=31
-    INT=32
-    ID_MAYUS=33
-    ID_MINUSCULA=34
-    WS=35
-    NEWLINE=36
-    COMMENT=37
+    STRING=30
+    INT=31
+    ID_MAYUS=32
+    ID_MINUSCULA=33
+    WS=34
+    COMMENT=35
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -212,12 +187,6 @@ class AlgoritmiaParser ( Parser ):
 
         def EOF(self):
             return self.getToken(AlgoritmiaParser.EOF, 0)
-
-        def NEWLINE(self, i:int=None):
-            if i is None:
-                return self.getTokens(AlgoritmiaParser.NEWLINE)
-            else:
-                return self.getToken(AlgoritmiaParser.NEWLINE, i)
 
         def procedimiento(self, i:int=None):
             if i is None:
@@ -253,41 +222,19 @@ class AlgoritmiaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 49
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while _la==36:
-                self.state = 46
-                self.match(AlgoritmiaParser.NEWLINE)
-                self.state = 51
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-
-            self.state = 58 
+            self.state = 45 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 52
+                self.state = 44
                 self.procedimiento()
-                self.state = 54 
+                self.state = 47 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while True:
-                    self.state = 53
-                    self.match(AlgoritmiaParser.NEWLINE)
-                    self.state = 56 
-                    self._errHandler.sync(self)
-                    _la = self._input.LA(1)
-                    if not (_la==36):
-                        break
-
-                self.state = 60 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if not (_la==33):
+                if not (_la==32):
                     break
 
-            self.state = 62
+            self.state = 49
             self.match(AlgoritmiaParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -316,12 +263,6 @@ class AlgoritmiaParser ( Parser ):
             return self.getTypedRuleContext(AlgoritmiaParser.ParametrosContext,0)
 
 
-        def NEWLINE(self, i:int=None):
-            if i is None:
-                return self.getTokens(AlgoritmiaParser.NEWLINE)
-            else:
-                return self.getToken(AlgoritmiaParser.NEWLINE, i)
-
         def getRuleIndex(self):
             return AlgoritmiaParser.RULE_procedimiento
 
@@ -349,33 +290,21 @@ class AlgoritmiaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 64
+            self.state = 51
             self.match(AlgoritmiaParser.ID_MAYUS)
-            self.state = 66
+            self.state = 53
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==34:
-                self.state = 65
+            if _la==33:
+                self.state = 52
                 self.parametros()
 
 
-            self.state = 68
+            self.state = 55
             self.match(AlgoritmiaParser.T__0)
-            self.state = 70 
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while True:
-                self.state = 69
-                self.match(AlgoritmiaParser.NEWLINE)
-                self.state = 72 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if not (_la==36):
-                    break
-
-            self.state = 74
+            self.state = 56
             self.instrucciones()
-            self.state = 75
+            self.state = 57
             self.match(AlgoritmiaParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -426,16 +355,16 @@ class AlgoritmiaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 78 
+            self.state = 60 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 77
+                self.state = 59
                 self.match(AlgoritmiaParser.ID_MINUSCULA)
-                self.state = 80 
+                self.state = 62 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==34):
+                if not (_la==33):
                     break
 
         except RecognitionException as re:
@@ -460,12 +389,6 @@ class AlgoritmiaParser ( Parser ):
             else:
                 return self.getTypedRuleContext(AlgoritmiaParser.InstruccionContext,i)
 
-
-        def NEWLINE(self, i:int=None):
-            if i is None:
-                return self.getTokens(AlgoritmiaParser.NEWLINE)
-            else:
-                return self.getToken(AlgoritmiaParser.NEWLINE, i)
 
         def getRuleIndex(self):
             return AlgoritmiaParser.RULE_instrucciones
@@ -494,25 +417,13 @@ class AlgoritmiaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 90
+            self.state = 67
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 25769809392) != 0):
-                self.state = 82
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 12884907504) != 0):
+                self.state = 64
                 self.instruccion()
-                self.state = 84 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                while True:
-                    self.state = 83
-                    self.match(AlgoritmiaParser.NEWLINE)
-                    self.state = 86 
-                    self._errHandler.sync(self)
-                    _la = self._input.LA(1)
-                    if not (_la==36):
-                        break
-
-                self.state = 92
+                self.state = 69
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -593,60 +504,60 @@ class AlgoritmiaParser ( Parser ):
         localctx = AlgoritmiaParser.InstruccionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_instruccion)
         try:
-            self.state = 102
+            self.state = 79
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,4,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 93
+                self.state = 70
                 self.asignacion()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 94
+                self.state = 71
                 self.lectura()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 95
+                self.state = 72
                 self.escritura()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 96
+                self.state = 73
                 self.condicional()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 97
+                self.state = 74
                 self.while_()
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 98
+                self.state = 75
                 self.llamada_proc()
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 99
+                self.state = 76
                 self.reproduccion()
                 pass
 
             elif la_ == 8:
                 self.enterOuterAlt(localctx, 8)
-                self.state = 100
+                self.state = 77
                 self.addlista()
                 pass
 
             elif la_ == 9:
                 self.enterOuterAlt(localctx, 9)
-                self.state = 101
+                self.state = 78
                 self.poplista()
                 pass
 
@@ -700,11 +611,11 @@ class AlgoritmiaParser ( Parser ):
         self.enterRule(localctx, 10, self.RULE_asignacion)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 104
+            self.state = 81
             self.match(AlgoritmiaParser.ID_MINUSCULA)
-            self.state = 105
+            self.state = 82
             self.match(AlgoritmiaParser.T__2)
-            self.state = 106
+            self.state = 83
             self.expr()
         except RecognitionException as re:
             localctx.exception = re
@@ -751,9 +662,9 @@ class AlgoritmiaParser ( Parser ):
         self.enterRule(localctx, 12, self.RULE_lectura)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 108
+            self.state = 85
             self.match(AlgoritmiaParser.T__3)
-            self.state = 109
+            self.state = 86
             self.match(AlgoritmiaParser.ID_MINUSCULA)
         except RecognitionException as re:
             localctx.exception = re
@@ -771,11 +682,8 @@ class AlgoritmiaParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def escritura_item(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(AlgoritmiaParser.Escritura_itemContext)
-            else:
-                return self.getTypedRuleContext(AlgoritmiaParser.Escritura_itemContext,i)
+        def escritura_item(self):
+            return self.getTypedRuleContext(AlgoritmiaParser.Escritura_itemContext,0)
 
 
         def getRuleIndex(self):
@@ -802,23 +710,12 @@ class AlgoritmiaParser ( Parser ):
 
         localctx = AlgoritmiaParser.EscrituraContext(self, self._ctx, self.state)
         self.enterRule(localctx, 14, self.RULE_escritura)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 111
+            self.state = 88
             self.match(AlgoritmiaParser.T__4)
-            self.state = 113 
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while True:
-                self.state = 112
-                self.escritura_item()
-                self.state = 115 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 33084669952) != 0)):
-                    break
-
+            self.state = 89
+            self.escritura_item()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -867,17 +764,17 @@ class AlgoritmiaParser ( Parser ):
         localctx = AlgoritmiaParser.Escritura_itemContext(self, self._ctx, self.state)
         self.enterRule(localctx, 16, self.RULE_escritura_item)
         try:
-            self.state = 119
+            self.state = 93
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [31]:
+            if token in [30]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 117
+                self.state = 91
                 self.match(AlgoritmiaParser.STRING)
                 pass
-            elif token in [26, 28, 29, 32, 33, 34]:
+            elif token in [21, 25, 27, 28, 31, 32, 33]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 118
+                self.state = 92
                 self.expr()
                 pass
             else:
@@ -899,11 +796,8 @@ class AlgoritmiaParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def expr(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(AlgoritmiaParser.ExprContext)
-            else:
-                return self.getTypedRuleContext(AlgoritmiaParser.ExprContext,i)
+        def expr(self):
+            return self.getTypedRuleContext(AlgoritmiaParser.ExprContext,0)
 
 
         def getRuleIndex(self):
@@ -933,25 +827,15 @@ class AlgoritmiaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 121
+            self.state = 95
             _la = self._input.LA(1)
             if not(_la==6 or _la==7):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 123 
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while True:
-                self.state = 122
-                self.expr()
-                self.state = 125 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 30937186304) != 0)):
-                    break
-
+            self.state = 96
+            self.expr()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -972,18 +856,12 @@ class AlgoritmiaParser ( Parser ):
             return self.getTypedRuleContext(AlgoritmiaParser.ExprContext,0)
 
 
-        def instructions_block(self, i:int=None):
+        def instrucciones(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(AlgoritmiaParser.Instructions_blockContext)
+                return self.getTypedRuleContexts(AlgoritmiaParser.InstruccionesContext)
             else:
-                return self.getTypedRuleContext(AlgoritmiaParser.Instructions_blockContext,i)
+                return self.getTypedRuleContext(AlgoritmiaParser.InstruccionesContext,i)
 
-
-        def NEWLINE(self, i:int=None):
-            if i is None:
-                return self.getTokens(AlgoritmiaParser.NEWLINE)
-            else:
-                return self.getToken(AlgoritmiaParser.NEWLINE, i)
 
         def getRuleIndex(self):
             return AlgoritmiaParser.RULE_condicional
@@ -1012,131 +890,29 @@ class AlgoritmiaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 127
+            self.state = 98
             self.match(AlgoritmiaParser.T__7)
-            self.state = 128
+            self.state = 99
             self.expr()
-            self.state = 129
+            self.state = 100
             self.match(AlgoritmiaParser.T__0)
-            self.state = 131 
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while True:
-                self.state = 130
-                self.match(AlgoritmiaParser.NEWLINE)
-                self.state = 133 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if not (_la==36):
-                    break
-
-            self.state = 135
-            self.instructions_block()
-            self.state = 136
+            self.state = 101
+            self.instrucciones()
+            self.state = 102
             self.match(AlgoritmiaParser.T__1)
-            self.state = 147
+            self.state = 108
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==9:
-                self.state = 137
+                self.state = 103
                 self.match(AlgoritmiaParser.T__8)
-                self.state = 138
+                self.state = 104
                 self.match(AlgoritmiaParser.T__0)
-                self.state = 140 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                while True:
-                    self.state = 139
-                    self.match(AlgoritmiaParser.NEWLINE)
-                    self.state = 142 
-                    self._errHandler.sync(self)
-                    _la = self._input.LA(1)
-                    if not (_la==36):
-                        break
-
-                self.state = 144
-                self.instructions_block()
-                self.state = 145
+                self.state = 105
+                self.instrucciones()
+                self.state = 106
                 self.match(AlgoritmiaParser.T__1)
 
-
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class Instructions_blockContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def instruccion(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(AlgoritmiaParser.InstruccionContext)
-            else:
-                return self.getTypedRuleContext(AlgoritmiaParser.InstruccionContext,i)
-
-
-        def NEWLINE(self, i:int=None):
-            if i is None:
-                return self.getTokens(AlgoritmiaParser.NEWLINE)
-            else:
-                return self.getToken(AlgoritmiaParser.NEWLINE, i)
-
-        def getRuleIndex(self):
-            return AlgoritmiaParser.RULE_instructions_block
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterInstructions_block" ):
-                listener.enterInstructions_block(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitInstructions_block" ):
-                listener.exitInstructions_block(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitInstructions_block" ):
-                return visitor.visitInstructions_block(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def instructions_block(self):
-
-        localctx = AlgoritmiaParser.Instructions_blockContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 22, self.RULE_instructions_block)
-        self._la = 0 # Token type
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 157
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 25769809392) != 0):
-                self.state = 149
-                self.instruccion()
-                self.state = 151 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                while True:
-                    self.state = 150
-                    self.match(AlgoritmiaParser.NEWLINE)
-                    self.state = 153 
-                    self._errHandler.sync(self)
-                    _la = self._input.LA(1)
-                    if not (_la==36):
-                        break
-
-                self.state = 159
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1158,15 +934,9 @@ class AlgoritmiaParser ( Parser ):
             return self.getTypedRuleContext(AlgoritmiaParser.ExprContext,0)
 
 
-        def instructions_block(self):
-            return self.getTypedRuleContext(AlgoritmiaParser.Instructions_blockContext,0)
+        def instrucciones(self):
+            return self.getTypedRuleContext(AlgoritmiaParser.InstruccionesContext,0)
 
-
-        def NEWLINE(self, i:int=None):
-            if i is None:
-                return self.getTokens(AlgoritmiaParser.NEWLINE)
-            else:
-                return self.getToken(AlgoritmiaParser.NEWLINE, i)
 
         def getRuleIndex(self):
             return AlgoritmiaParser.RULE_while
@@ -1191,31 +961,18 @@ class AlgoritmiaParser ( Parser ):
     def while_(self):
 
         localctx = AlgoritmiaParser.WhileContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 24, self.RULE_while)
-        self._la = 0 # Token type
+        self.enterRule(localctx, 22, self.RULE_while)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 160
+            self.state = 110
             self.match(AlgoritmiaParser.T__9)
-            self.state = 161
+            self.state = 111
             self.expr()
-            self.state = 162
+            self.state = 112
             self.match(AlgoritmiaParser.T__0)
-            self.state = 164 
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while True:
-                self.state = 163
-                self.match(AlgoritmiaParser.NEWLINE)
-                self.state = 166 
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if not (_la==36):
-                    break
-
-            self.state = 168
-            self.instructions_block()
-            self.state = 169
+            self.state = 113
+            self.instrucciones()
+            self.state = 114
             self.match(AlgoritmiaParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -1266,21 +1023,21 @@ class AlgoritmiaParser ( Parser ):
     def llamada_proc(self):
 
         localctx = AlgoritmiaParser.Llamada_procContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 26, self.RULE_llamada_proc)
-        self._la = 0 # Token type
+        self.enterRule(localctx, 24, self.RULE_llamada_proc)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 171
+            self.state = 116
             self.match(AlgoritmiaParser.ID_MAYUS)
-            self.state = 175
+            self.state = 120
             self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 30937186304) != 0):
-                self.state = 172
-                self.expr()
-                self.state = 177
+            _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt==1:
+                    self.state = 117
+                    self.expr() 
+                self.state = 122
                 self._errHandler.sync(self)
-                _la = self._input.LA(1)
+                _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1328,14 +1085,16 @@ class AlgoritmiaParser ( Parser ):
     def addlista(self):
 
         localctx = AlgoritmiaParser.AddlistaContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 28, self.RULE_addlista)
+        self.enterRule(localctx, 26, self.RULE_addlista)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 178
+            self.state = 123
             self.match(AlgoritmiaParser.ID_MINUSCULA)
-            self.state = 179
+            self.state = 124
             self.match(AlgoritmiaParser.T__10)
-            self.state = 180
+            self.state = 125
+            self.match(AlgoritmiaParser.T__10)
+            self.state = 126
             self.expr()
         except RecognitionException as re:
             localctx.exception = re
@@ -1383,18 +1142,20 @@ class AlgoritmiaParser ( Parser ):
     def poplista(self):
 
         localctx = AlgoritmiaParser.PoplistaContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 30, self.RULE_poplista)
+        self.enterRule(localctx, 28, self.RULE_poplista)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 182
+            self.state = 128
             self.match(AlgoritmiaParser.T__11)
-            self.state = 183
+            self.state = 129
+            self.match(AlgoritmiaParser.T__10)
+            self.state = 130
             self.match(AlgoritmiaParser.ID_MINUSCULA)
-            self.state = 184
+            self.state = 131
             self.match(AlgoritmiaParser.T__12)
-            self.state = 185
+            self.state = 132
             self.expr()
-            self.state = 186
+            self.state = 133
             self.match(AlgoritmiaParser.T__13)
         except RecognitionException as re:
             localctx.exception = re
@@ -1439,10 +1200,10 @@ class AlgoritmiaParser ( Parser ):
     def expr(self):
 
         localctx = AlgoritmiaParser.ExprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 32, self.RULE_expr)
+        self.enterRule(localctx, 30, self.RULE_expr)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 188
+            self.state = 135
             self.comparacion()
         except RecognitionException as re:
             localctx.exception = re
@@ -1490,26 +1251,26 @@ class AlgoritmiaParser ( Parser ):
     def comparacion(self):
 
         localctx = AlgoritmiaParser.ComparacionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 34, self.RULE_comparacion)
+        self.enterRule(localctx, 32, self.RULE_comparacion)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 190
+            self.state = 137
             self.aritmetica()
-            self.state = 195
+            self.state = 142
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 2064384) != 0):
-                self.state = 191
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1017856) != 0):
+                self.state = 138
                 _la = self._input.LA(1)
-                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 2064384) != 0)):
+                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1017856) != 0)):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-                self.state = 192
+                self.state = 139
                 self.aritmetica()
-                self.state = 197
+                self.state = 144
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1559,28 +1320,29 @@ class AlgoritmiaParser ( Parser ):
     def aritmetica(self):
 
         localctx = AlgoritmiaParser.AritmeticaContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 36, self.RULE_aritmetica)
+        self.enterRule(localctx, 34, self.RULE_aritmetica)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 198
+            self.state = 145
             self.termino()
-            self.state = 203
+            self.state = 150
             self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while _la==21 or _la==22:
-                self.state = 199
-                _la = self._input.LA(1)
-                if not(_la==21 or _la==22):
-                    self._errHandler.recoverInline(self)
-                else:
-                    self._errHandler.reportMatch(self)
-                    self.consume()
-                self.state = 200
-                self.termino()
-                self.state = 205
+            _alt = self._interp.adaptivePredict(self._input,9,self._ctx)
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt==1:
+                    self.state = 146
+                    _la = self._input.LA(1)
+                    if not(_la==20 or _la==21):
+                        self._errHandler.recoverInline(self)
+                    else:
+                        self._errHandler.reportMatch(self)
+                        self.consume()
+                    self.state = 147
+                    self.termino() 
+                self.state = 152
                 self._errHandler.sync(self)
-                _la = self._input.LA(1)
+                _alt = self._interp.adaptivePredict(self._input,9,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1628,26 +1390,26 @@ class AlgoritmiaParser ( Parser ):
     def termino(self):
 
         localctx = AlgoritmiaParser.TerminoContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 38, self.RULE_termino)
+        self.enterRule(localctx, 36, self.RULE_termino)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 206
+            self.state = 153
             self.factor()
-            self.state = 211
+            self.state = 158
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 58720256) != 0):
-                self.state = 207
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 29360128) != 0):
+                self.state = 154
                 _la = self._input.LA(1)
-                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 58720256) != 0)):
+                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 29360128) != 0)):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-                self.state = 208
+                self.state = 155
                 self.factor()
-                self.state = 213
+                self.state = 160
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1666,6 +1428,10 @@ class AlgoritmiaParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+
+        def factor(self):
+            return self.getTypedRuleContext(AlgoritmiaParser.FactorContext,0)
+
 
         def expr(self):
             return self.getTypedRuleContext(AlgoritmiaParser.ExprContext,0)
@@ -1707,62 +1473,70 @@ class AlgoritmiaParser ( Parser ):
     def factor(self):
 
         localctx = AlgoritmiaParser.FactorContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 40, self.RULE_factor)
+        self.enterRule(localctx, 38, self.RULE_factor)
         try:
-            self.state = 229
+            self.state = 178
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,22,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,11,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 214
-                self.match(AlgoritmiaParser.T__25)
-                self.state = 215
-                self.expr()
-                self.state = 216
-                self.match(AlgoritmiaParser.T__26)
+                self.state = 161
+                self.match(AlgoritmiaParser.T__20)
+                self.state = 162
+                self.factor()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 218
-                self.match(AlgoritmiaParser.INT)
+                self.state = 163
+                self.match(AlgoritmiaParser.T__24)
+                self.state = 164
+                self.expr()
+                self.state = 165
+                self.match(AlgoritmiaParser.T__25)
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 219
-                self.match(AlgoritmiaParser.ID_MINUSCULA)
+                self.state = 167
+                self.match(AlgoritmiaParser.INT)
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 220
-                self.match(AlgoritmiaParser.ID_MAYUS)
+                self.state = 168
+                self.match(AlgoritmiaParser.ID_MINUSCULA)
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 221
-                self.match(AlgoritmiaParser.ID_MINUSCULA)
-                self.state = 222
-                self.match(AlgoritmiaParser.T__12)
-                self.state = 223
-                self.expr()
-                self.state = 224
-                self.match(AlgoritmiaParser.T__13)
+                self.state = 169
+                self.match(AlgoritmiaParser.ID_MAYUS)
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 226
-                self.match(AlgoritmiaParser.T__27)
-                self.state = 227
+                self.state = 170
                 self.match(AlgoritmiaParser.ID_MINUSCULA)
+                self.state = 171
+                self.match(AlgoritmiaParser.T__12)
+                self.state = 172
+                self.expr()
+                self.state = 173
+                self.match(AlgoritmiaParser.T__13)
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 228
+                self.state = 175
+                self.match(AlgoritmiaParser.T__26)
+                self.state = 176
+                self.match(AlgoritmiaParser.ID_MINUSCULA)
+                pass
+
+            elif la_ == 8:
+                self.enterOuterAlt(localctx, 8)
+                self.state = 177
                 self.lista()
                 pass
 
@@ -1810,22 +1584,22 @@ class AlgoritmiaParser ( Parser ):
     def lista(self):
 
         localctx = AlgoritmiaParser.ListaContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 42, self.RULE_lista)
+        self.enterRule(localctx, 40, self.RULE_lista)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 231
-            self.match(AlgoritmiaParser.T__28)
-            self.state = 233
+            self.state = 180
+            self.match(AlgoritmiaParser.T__27)
+            self.state = 182
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 30937186304) != 0):
-                self.state = 232
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 15470690304) != 0):
+                self.state = 181
                 self.elementos_lista()
 
 
-            self.state = 235
-            self.match(AlgoritmiaParser.T__29)
+            self.state = 184
+            self.match(AlgoritmiaParser.T__28)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1872,20 +1646,20 @@ class AlgoritmiaParser ( Parser ):
     def elementos_lista(self):
 
         localctx = AlgoritmiaParser.Elementos_listaContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 44, self.RULE_elementos_lista)
+        self.enterRule(localctx, 42, self.RULE_elementos_lista)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 238 
+            self.state = 187 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 237
+                self.state = 186
                 self.expr()
-                self.state = 240 
+                self.state = 189 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 30937186304) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 15470690304) != 0)):
                     break
 
         except RecognitionException as re:

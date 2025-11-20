@@ -1,4 +1,4 @@
-# Generated from C:/Users/Admin/PycharmProjects/PythonProject4/Algoritmia.g4 by ANTLR 4.13.2
+# Generated from C:/Users/Admin/Desktop/aaa/Algoritmia.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .AlgoritmiaParser import AlgoritmiaParser
@@ -61,11 +61,6 @@ class AlgoritmiaVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by AlgoritmiaParser#condicional.
     def visitCondicional(self, ctx:AlgoritmiaParser.CondicionalContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by AlgoritmiaParser#instructions_block.
-    def visitInstructions_block(self, ctx:AlgoritmiaParser.Instructions_blockContext):
         return self.visitChildren(ctx)
 
 

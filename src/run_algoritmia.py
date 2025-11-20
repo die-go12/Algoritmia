@@ -1,71 +1,99 @@
+import sys
 import os
-import subprocess
-import shutil
+from antlr4 import *
 
-# Directorios base
-SRC_DIR = os.path.dirname(__file__)
+# Configuración de rutas
+SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMP_DIR = os.path.join(SRC_DIR, "temp")
-MUSIC_DIR = os.path.join(SRC_DIR, "music")
-ALGORITMIA_MAIN = os.path.join(SRC_DIR, "algoritmia", "Algoritmia.py")
+MEDIA_DIR = os.path.join(SRC_DIR, "media")
 
-os.makedirs(MUSIC_DIR, exist_ok=True)
+# --- IMPORTACIONES DE TU LENGUAJE ---
+# Aseguramos que Python encuentre el paquete 'algoritmia'
+sys.path.append(SRC_DIR)
 
-def ejecutar_algoritmia(nombre_alg):
-    archivo_alg = os.path.join(TEMP_DIR, nombre_alg)
+try:
+    from algoritmia.AlgoritmiaLexer import AlgoritmiaLexer
+    from algoritmia.AlgoritmiaParser import AlgoritmiaParser
+    # Asegúrate de que tu archivo se llame Executor.py o ajusta esta línea
+    from algoritmia.Executor import AlgoritmiaExecutor 
+except ImportError as e:
+    print(" Error de importación. Asegúrate de haber generado los archivos de ANTLR.")
+    print(f"Detalle: {e}")
+    sys.exit(1)
 
-    if not os.path.isfile(archivo_alg):
-        print(f"❌ El archivo {archivo_alg} no existe.")
+def listar_archivos():
+    print("\n Archivos .alg disponibles en temp/:")
+    if not os.path.exists(TEMP_DIR):
+        print(f"   (No existe el directorio {TEMP_DIR})")
         return
-
-    # 1️⃣ Ejecutar intérprete de Algoritmia
-    try:
-        subprocess.run(
-            ["python", "-m","algoritmia.main", archivo_alg],
-            check=True
-        )
-    except subprocess.CalledProcessError:
-        print("❌ Error al ejecutar el intérprete de Algoritmia.")
-        return
-
-    # 2️⃣ Mover archivos generados (.ly, .midi, .pdf)
-    base = os.path.splitext(nombre_alg)[0]
-    generados = [f"{base}.ly", f"{base}.midi", f"{base}.pdf"]
-
-    for archivo in generados:
-        origen = os.path.join(SRC_DIR, archivo)
-        destino = os.path.join(MUSIC_DIR, archivo)
-
-        if os.path.exists(origen):
-            shutil.move(origen, destino)
-            print(f"✔ Movido {archivo} → music/")
-        else:
-            print(f"⚠ No se generó {archivo}")
-
-    # 3️⃣ Convertir MIDI a WAV
-    midi_file = os.path.join(MUSIC_DIR, f"{base}.midi")
-    wav_file = os.path.join(MUSIC_DIR, f"{base}.wav")
-
-    if os.path.exists(midi_file):
-        try:
-            subprocess.run(
-                ["timidity", midi_file, "-Ow", "-o", wav_file],
-                check=True
-            )
-            print(f"🎵 WAV generado: {wav_file}")
-        except subprocess.CalledProcessError:
-            print("❌ Error al generar WAV con Timidity++")
+        
+    archivos = [f for f in os.listdir(TEMP_DIR) if f.endswith(".alg")]
+    if not archivos:
+        print("   (La carpeta está vacía)")
     else:
-        print("⚠ No hay MIDI para convertir.")
+        for f in archivos:
+            print(f" - {f}")
 
-    print("\n📁 Contenido final en /music:")
-    print(os.listdir(MUSIC_DIR))
+def procesar_archivo(nombre_archivo, entry_point="Main"):
+    ruta_completa = os.path.join(TEMP_DIR, nombre_archivo)
 
+    if not os.path.isfile(ruta_completa):
+        print(f" El archivo no existe: {ruta_completa}")
+        return
+
+    print("\n" + "="*40)
+    print(f"  Ejecutando Algoritmia...")
+    print(f"  Archivo: {nombre_archivo}")
+    print(f"  Inicio : {entry_point}")
+    print("="*40 + "\n")
+
+    try:
+        # 1. Lectura del archivo
+        input_stream = FileStream(ruta_completa, encoding='utf-8')
+        
+        # 2. Análisis Léxico y Sintáctico
+        lexer = AlgoritmiaLexer(input_stream)
+        stream = CommonTokenStream(lexer)
+        parser = AlgoritmiaParser(stream)
+        tree = parser.programa()
+
+        # 3. Preparación del Ejecutor
+        visitor = AlgoritmiaExecutor()
+
+        # --- AQUÍ ESTÁ EL CAMBIO CLAVE ---
+        # Extraemos "piano" de "piano.alg" y se lo pasamos al visitor
+        nombre_base = os.path.splitext(nombre_archivo)[0]
+        visitor.output_filename = nombre_base
+        # ---------------------------------
+
+        # Configuración del punto de entrada
+        if entry_point and entry_point.strip():
+            visitor.entry_point = entry_point.strip()
+
+        # 4. Ejecución
+        visitor.visit(tree)
+        
+        print(f"\n Proceso finalizado.")
+        print(f" Resultados guardados como '{nombre_base}.wav' y '{nombre_base}.pdf'")
+        print(f" Ubicación: {MEDIA_DIR}")
+
+    except Exception as e:
+        print(f"\n Error durante la ejecución: {e}")
+        # import traceback; traceback.print_exc() # Descomentar para ver detalles técnicos
 
 if __name__ == "__main__":
-    print("📄 Archivos .alg disponibles en temp/:")
-    for f in os.listdir(TEMP_DIR):
-        if f.endswith(".alg"):
-            print(" -", f)
-
-    archivo = input("\nIngrese el nombre del archivo .alg a ejecutar: ")
-    ejecutar_algoritmia(archivo)
+    try:
+        listar_archivos()
+        print("\n--- Configuración de Ejecución ---")
+        archivo = input("1. Nombre del archivo (ej: piano.alg): ").strip()
+        
+        if archivo:
+            proc = input("2. Procedimiento inicial (Enter para 'Main'): ").strip()
+            if not proc: proc = "Main"
+            
+            procesar_archivo(archivo, proc)
+        else:
+            print(" Debes escribir un nombre de archivo.")
+            
+    except KeyboardInterrupt:
+        print("\n Ejecución cancelada.")

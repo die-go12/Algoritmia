@@ -1,23 +1,21 @@
 grammar Algoritmia;
 
-// ---------- Estructura principal ----------
-
 programa:
-    (NEWLINE)* (procedimiento (NEWLINE)+)+ EOF
+    procedimiento+ EOF
     ;
 
 procedimiento:
-    ID_MAYUS parametros? '|:' NEWLINE+ instrucciones ':|'
+
+    ID_MAYUS parametros? '|:' instrucciones ':|'
     ;
 
 parametros:
     ID_MINUSCULA+
     ;
 
-// ---------- Instrucciones ----------
 
 instrucciones:
-    (instruccion (NEWLINE)+)*
+    instruccion*
     ;
 
 instruccion
@@ -32,68 +30,54 @@ instruccion
     | poplista
     ;
 
-// asignacion
 asignacion:
     ID_MINUSCULA '<-' expr
     ;
 
-// lectura
 lectura:
     '<?>' ID_MINUSCULA
     ;
 
-// escritura
 escritura:
-    '<w>' escritura_item+
+    '<w>' escritura_item
     ;
 
 escritura_item:
-    STRING
-  | expr
+      STRING
+    | expr
     ;
 
-// reproduccion
 reproduccion:
-    (('(:)' | '<:>') expr+)
+    ( '(:)' | '<:>' ) expr
     ;
 
-// condicional
 condicional:
-    'if' expr '|:' NEWLINE+ instructions_block ':|'
-    ( 'else' '|:' NEWLINE+ instructions_block ':|' )?
+    'if' expr '|:' instrucciones ':|'
+    ( 'else' '|:' instrucciones ':|' )?
     ;
 
-instructions_block:
-    (instruccion (NEWLINE)+)*
-    ;
-
-// while
 while:
-    'while' expr '|:' NEWLINE+ instructions_block ':|'
+    'while' expr '|:' instrucciones ':|'
     ;
 
-// llamada a procedimiento
 llamada_proc:
     ID_MAYUS expr*
     ;
 
-// append en listas
 addlista:
-    ID_MINUSCULA '<<' expr
+    ID_MINUSCULA '<' '<' expr
     ;
 
-// pop de listas
 poplista:
-    '8<' ID_MINUSCULA '[' expr ']'
+    '8' '<' ID_MINUSCULA '[' expr ']'
     ;
-
-// ---------- Expresiones ----------
 
 expr:
     comparacion
     ;
 
 comparacion:
+
     aritmetica (('=' | '/=' | '<' | '>' | '<=' | '>=') aritmetica)*
     ;
 
@@ -106,10 +90,11 @@ termino:
     ;
 
 factor:
-      '(' expr ')'
+      '-' factor
+    | '(' expr ')'
     | INT
     | ID_MINUSCULA
-    | ID_MAYUS               // notas o constantes
+    | ID_MAYUS
     | ID_MINUSCULA '[' expr ']'
     | '#' ID_MINUSCULA
     | lista
@@ -123,7 +108,6 @@ elementos_lista:
     expr+
     ;
 
-// ---------- Lexer ----------
 
 STRING:
     '"' (~["\r\n] | '\\' .)* '"'
@@ -134,19 +118,16 @@ INT:
     ;
 
 ID_MAYUS:
-    [A-Z][A-Za-z0-9_]*      // Procedimientos y notas musicales
+    [A-Z][A-Za-z0-9_]*
     ;
 
 ID_MINUSCULA:
-    [a-z_][A-Za-z0-9_]*     // Variables
+    [a-z_][A-Za-z0-9_]*
     ;
+
 
 WS:
-    [ \t]+ -> skip
-    ;
-
-NEWLINE:
-    ('\r'? '\n' | '\r')+
+    [ \t\r\n]+ -> skip
     ;
 
 COMMENT:

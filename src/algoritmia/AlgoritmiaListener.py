@@ -1,4 +1,4 @@
-# Generated from C:/Users/Admin/PycharmProjects/PythonProject4/Algoritmia.g4 by ANTLR 4.13.2
+# Generated from C:/Users/Admin/Desktop/aaa/Algoritmia.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .AlgoritmiaParser import AlgoritmiaParser
@@ -104,15 +104,6 @@ class AlgoritmiaListener(ParseTreeListener):
 
     # Exit a parse tree produced by AlgoritmiaParser#condicional.
     def exitCondicional(self, ctx:AlgoritmiaParser.CondicionalContext):
-        pass
-
-
-    # Enter a parse tree produced by AlgoritmiaParser#instructions_block.
-    def enterInstructions_block(self, ctx:AlgoritmiaParser.Instructions_blockContext):
-        pass
-
-    # Exit a parse tree produced by AlgoritmiaParser#instructions_block.
-    def exitInstructions_block(self, ctx:AlgoritmiaParser.Instructions_blockContext):
         pass
 
 

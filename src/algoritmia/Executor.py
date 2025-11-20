@@ -8,39 +8,42 @@ import re
 
 class AlgoritmiaExecutor(AlgoritmiaVisitor):
     def __init__(self):
-        # Estado
-        self.variables = {}        # Scope actual
-        self.procedimientos = {}   # Tabla de procedimientos
-        self.output_notes = []     # Acumulador de notas
+            # Estado
+            self.variables = {}        # Scope actual
+            self.procedimientos = {}   # Tabla de procedimientos
+            self.output_notes = []     # Acumulador de notas
+            self.output_filename = "salida"  # Nombre por defecto
+            # Configuración de ejecución
+            self.entry_point = "Main"  
+            
+            # Depuración / estadísticas
+            self.DEBUG = False         # Poner False para silencio
+            self.note_calls = 0        # cuantas veces se llamó (:)
+            self.note_added = 0        # cuántas notas válidas fueron agregadas
 
-        # Depuración / estadísticas
-        self.DEBUG = False         # Poner False para silencio
-        self.note_calls = 0        # cuantas veces se llamó (:)
-        self.note_added = 0        # cuántas notas válidas fueron agregadas
+            # ---------------------------------------------------------
+            # RUTAS 
+            # ---------------------------------------------------------
+            self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # src/algoritmia
+            self.PROJECT_DIR = os.path.dirname(self.BASE_DIR)           # src/
+            self.MUSIC_DIR = os.path.join(self.PROJECT_DIR, "music")    # src/music
+            self.OUTPUT_DIR = os.path.join(self.PROJECT_DIR, "media")   # src/media
 
-        # ---------------------------------------------------------
-        # RUTAS (Correctas según tu estructura src/algoritmia/)
-        # ---------------------------------------------------------
-        self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # src/algoritmia
-        self.PROJECT_DIR = os.path.dirname(self.BASE_DIR)           # src/
-        self.MUSIC_DIR = os.path.join(self.PROJECT_DIR, "music")    # src/music
-        self.OUTPUT_DIR = os.path.join(self.PROJECT_DIR, "media")   # src/media
+            os.makedirs(self.OUTPUT_DIR, exist_ok=True)
 
-        os.makedirs(self.OUTPUT_DIR, exist_ok=True)
+            # Archivos de sonido
+            self.CFG_PATH = os.path.normpath(os.path.join(self.MUSIC_DIR, "timgm6mb.cfg"))
+            self.SF2_PATH = os.path.normpath(os.path.join(self.MUSIC_DIR, "TimGM6mb.sf2"))
 
-        # Archivos de sonido
-        self.CFG_PATH = os.path.normpath(os.path.join(self.MUSIC_DIR, "timgm6mb.cfg"))
-        self.SF2_PATH = os.path.normpath(os.path.join(self.MUSIC_DIR, "TimGM6mb.sf2"))
-
-        # Límites de seguridad
-        self.MAX_RECURSION = 500
-        self._call_depth = 0
-        self.MAX_WHILE_ITERS = 200_000
+            # Límites de seguridad
+            self.MAX_RECURSION = 500
+            self._call_depth = 0
+            self.MAX_WHILE_ITERS = 200_000
 
     # -----------------------------
     # PROGRAMA
     # -----------------------------
-# --- NUEVOS HELPERS PARA ARITMÉTICA MUSICAL ---
+    # --- NUEVOS HELPERS PARA ARITMÉTICA MUSICAL ---
     def _nota_a_int(self, nota_str):
         """Convierte 'A0' a 0, 'B0' a 1... para poder sumarles números"""
         m = re.match(r'^([A-Ga-g])([#b]?)(\d*)$', nota_str)
@@ -78,39 +81,52 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
         return f"{letra}{octava_visual}"
     
     def visitPrograma(self, ctx: AlgoritmiaParser.ProgramaContext):
-        # 1. Registrar procedimientos
-        print("--- Registrando Procedimientos ---")
-        for p in ctx.procedimiento():
-            if p.ID_MAYUS():
-                name = p.ID_MAYUS().getText()
-                self.procedimientos[name] = p
-                print(f" - {name}")
+            # 1. Registrar procedimientos
+            print("--- Registrando Procedimientos ---")
+            for p in ctx.procedimiento():
+                if p.ID_MAYUS():
+                    name = p.ID_MAYUS().getText()
+                    self.procedimientos[name] = p
+                    # Solo imprimimos si es DEBUG para no ensuciar la salida estándar
+                    if self.DEBUG: print(f" - Registrado: {name}")
 
-        # 2. Ejecutar Main
-        if "Main" in self.procedimientos:
-            print("\n--- Ejecución ---")
-            try:
-                self.visitProcedimiento(self.procedimientos["Main"])
-            except Exception as e:
-                print(f"\n❌ Error en ejecución: {e}")
-                return 
+            # 2. Ejecutar el Entry Point seleccionado (Dinámico)
+            target = self.entry_point  # <--- USAMOS LA VARIABLE, NO "Main" FIJO
 
-            # imprimir estadísticas si DEBUG
-            if self.DEBUG:
-                print(f"\n[STATS] llamadas a (:): {self.note_calls}, notas válidas: {self.note_added}, total output_notes: {len(self.output_notes)}")
+            if target in self.procedimientos:
+                print(f"\n--- Ejecutando: {target} ---")
+                try:
+                    self.visitProcedimiento(self.procedimientos[target])
+                except Exception as e:
+                    print(f"\n Error en ejecución: {e}")
+                    if self.DEBUG: import traceback; traceback.print_exc()
+                    return 
 
-            # 3. Generar Salida Multimedia
-            if self.output_notes:
-                print("\n--- Generando Archivos ---")
-                ly_path = os.path.join(self.OUTPUT_DIR, "salida.ly")
-                base = os.path.join(self.OUTPUT_DIR, "salida")
-                self.generar_lilypond(ly_path)
-                self.render_musica(base)
+                # imprimir estadísticas si DEBUG
+                if self.DEBUG:
+                    print(f"\n[STATS] llamadas a (:): {self.note_calls}, notas válidas: {self.note_added}")
+
+                # 3. Generar Salida Multimedia
+                if self.output_notes:
+                    # CAMBIAR: Usamos la variable self.output_filename
+                    print(f"\n--- Generando Archivos ({self.output_filename}) ---")
+                                
+                    # Nombre dinámico para el .ly
+                    ly_name = f"{self.output_filename}.ly"
+                    ly_path = os.path.join(self.OUTPUT_DIR, ly_name)
+                                
+                    # Nombre base dinámico para midi/wav
+                    base = os.path.join(self.OUTPUT_DIR, self.output_filename)
+                                
+                    self.generar_lilypond(ly_path)
+                    self.render_musica(base)
+                else:
+                    print("No hay notas musicales para procesar.")
             else:
-                print("ℹ️ No hay notas musicales para procesar.")
-        else:
-            print("❌ Error: No se encontró el procedimiento 'Main'.")
-        return None
+                print(f"Error: No se encontró el procedimiento '{target}'.")
+                print(f"   Procedimientos disponibles: {', '.join(self.procedimientos.keys())}")
+            
+            return None
 
     # -----------------------------
     # PROCEDIMIENTO
@@ -224,26 +240,33 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
             self.variables[name] = entrada # String fallback
 
     # -----------------------------
-    # ESCRITURA (Corregido error sintaxis)
+    # ESCRITURA 
     # -----------------------------
     def visitEscritura(self, ctx: AlgoritmiaParser.EscrituraContext):
-        parts = []
-        for item in ctx.escritura_item():
-            v = self.visit(item)
-            # Formato PDF[cite: 137]: Listas con corchetes
-            if isinstance(v, list):
-                # Formato visual [1, 2, 3] -> [1 2 3] según estilo Algoritmia?
-                # Python str(list) usa comas. Algoritmia prefiere espacios.
-                s = str(v).replace(',', '')
-                parts.append(s)
+        # CAMBIO: Ya no iteramos porque la gramática es estricta (1 ítem por <w>)
+        
+        # 1. Obtenemos el único ítem
+        item = ctx.escritura_item()
+        
+        # 2. Procesamos según tipo
+        if item.STRING():
+            # Caso texto: "Hola" -> quitamos comillas
+            texto = item.STRING().getText()[1:-1]
+            print(texto)
+        else:
+            # Caso expresión: variable o número
+            val = self.visit(item.expr())
+            
+            # Formateo de listas
+            if isinstance(val, list):
+                s = str(val).replace(',', '') # [1 2 3]
+                print(s)
             else:
-                parts.append(str(v))
-        print(" ".join(parts))
+                print(str(val))
+        
+        return None
 
-    def visitEscritura_item(self, ctx: AlgoritmiaParser.Escritura_itemContext):
-        if ctx.STRING():
-            return ctx.STRING().getText().strip('"')
-        return self.visit(ctx.expr())
+
 
     # -----------------------------
     # EXPRESIONES Y COMPARACIÓN
@@ -311,70 +334,67 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
     # -----------------------------
     # FACTOR
     # -----------------------------
+ 
     def visitFactor(self, ctx: AlgoritmiaParser.FactorContext):
-        # Entero
-        if ctx.INT(): return int(ctx.INT().getText())
-        
-        # Lista literal { ... }
-        if ctx.lista(): return self.visit(ctx.lista())
+        # 1. CASO NEGATIVO
+        # Si el primer hijo es un guion '-', es un negativo.
+        if ctx.getChildCount() == 2 and ctx.getChild(0).getText() == '-':
+            
+            val = self.visit(ctx.factor()) 
+            return -val
 
-        # Variable
+        # 2. Entero normal
+        if ctx.INT(): 
+            return int(ctx.INT().getText())
+        
+        # 3. Lista literal { ... }
+        if ctx.lista(): 
+            return self.visit(ctx.lista())
+
+        # 4. Variable
         if ctx.ID_MINUSCULA() and ctx.getChildCount() == 1:
             name = ctx.ID_MINUSCULA().getText()
             return self.variables.get(name, 0)
 
-        # Longitud #v
+        # 5. Longitud #v
         if ctx.getChildCount() == 2 and ctx.getChild(0).getText() == '#':
             name = ctx.ID_MINUSCULA().getText()
             val = self.variables.get(name)
             if isinstance(val, list):
                 return len(val)
-            else:
-                if self.DEBUG:
-                    print(f"[DEBUG] # {name} -> no es lista (valor: {val})")
-                return 0
+            return 0
 
-        # Acceso índice v[expr] (Base-1 según PDF)
+        # 6. Acceso índice v[expr]
         if ctx.getChildCount() == 4 and ctx.getChild(1).getText() == '[':
             name = ctx.ID_MINUSCULA().getText()
             idx = self.visit(ctx.expr())
             lista = self.variables.get(name)
             
-            if not isinstance(lista, list):
-                if self.DEBUG:
-                    print(f"[DEBUG] Acceso por índice a '{name}' que no es lista. Retornando 0.")
-                return 0
+            if not isinstance(lista, list): return 0
 
-            # Validar idx puede convertirse a int
             try:
                 idx_int = int(idx)
-            except Exception:
-                if self.DEBUG:
-                    print(f"[DEBUG] Índice no entero para {name}[{idx}] -> retornando 0")
+            except:
                 return 0
 
-            # En tu lenguaje asumes base-1. Convertir y validar
+            # Conversión Base-1 (Algoritmia) a Base-0 (Python)
             idx_py = idx_int - 1
-            if idx_int <= 0 or idx_py < 0 or idx_py >= len(lista):
-                # No lanzar excepción — registrar y devolver 0 (comportamiento previo)
-                if self.DEBUG:
-                    print(f"⚠️ Índice fuera de rango: {idx_int} en lista '{name}' de tam {len(lista)}")
+            if idx_py < 0 or idx_py >= len(lista):
+                if self.DEBUG: print(f"⚠️ Índice fuera de rango: {idx_int}")
                 return 0
-
             return lista[idx_py]
 
-        
-        # Nota musical o Procedimiento (ID_MAYUS)
+        # 7. Nota Musical o Constante (ID_MAYUS)
         if ctx.ID_MAYUS(): 
             texto = ctx.ID_MAYUS().getText()
-            # Intentar convertir a entero (A0 -> 0) para permitir sumas
             val_int = self._nota_a_int(texto)
             if val_int is not None:
                 return val_int
-            return texto # Si no es nota (ej: "Main"), devolver texto
+            return texto 
 
-        # Paréntesis ( expr )
-        if ctx.expr(): return self.visit(ctx.expr())
+        # 8. Paréntesis ( expr )
+        if ctx.expr(): 
+            return self.visit(ctx.expr())
 
         return 0
 
@@ -424,7 +444,7 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
         pos = idx_int - 1
         if idx_int <= 0 or pos < 0 or pos >= len(lista):
             if self.DEBUG:
-                print(f"⚠️ poplista: índice fuera de rango: {idx_int} en lista '{name}' de tam {len(lista)}")
+                print(f" poplista: índice fuera de rango: {idx_int} en lista '{name}' de tam {len(lista)}")
             return 0
 
         val = lista.pop(pos)
@@ -439,14 +459,14 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
         cond = self.visit(ctx.expr())
         # PDF: 0 es Falso, 1 (o cualquier otro) es Verdadero
         if cond != 0:
-            self.visit(ctx.instructions_block(0))
-        elif len(ctx.instructions_block()) > 1:
-            self.visit(ctx.instructions_block(1))
+            self.visit(ctx.instrucciones(0))
+        elif len(ctx.instrucciones()) > 1:
+            self.visit(ctx.instrucciones(1))
 
     def visitWhile(self, ctx: AlgoritmiaParser.WhileContext):
         iter_count = 0
         while self.visit(ctx.expr()) != 0:
-            self.visit(ctx.instructions_block())
+            self.visit(ctx.instrucciones())
             iter_count += 1
             if iter_count > self.MAX_WHILE_ITERS:
                 raise RuntimeError("Bucle infinito detectado.")
@@ -465,38 +485,54 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
         return self.visitProcedimiento(self.procedimientos[name], args=args_vals)
 
     # -----------------------------
-    # MÚSICA
+    # MÚSICA 
     # -----------------------------
     def visitReproduccion(self, ctx: AlgoritmiaParser.ReproduccionContext):
-        for e in ctx.expr():
-            val = self.visit(e)
-            if isinstance(val, list):
-                for v in val:
-                    self._agregar_nota(v)
-            else:
-                self._agregar_nota(val)
+        # CAMBIO: Ya no hay bucle "for" porque la gramática ahora es estricta (solo 1 expresión)
+        
+        # 1. Obtenemos la única expresión
+        expr_node = ctx.expr() 
+        
+        # 2. La evaluamos
+        val = self.visit(expr_node)
+
+        # 3. Procesamos el resultado (igual que antes)
+        if isinstance(val, list):
+            # Si la expresión era una lista { C4 E4 }, tocamos todos sus elementos
+            for v in val:
+                self._agregar_nota(v)
+        else:
+            # Si era una nota simple o variable, la tocamos
+            self._agregar_nota(val)
 
     def _agregar_nota(self, val):
-        # Contador de llamadas a (:)
-        self.note_calls += 1
+            # Contador de llamadas a (:)
+            self.note_calls += 1
 
-        # CAMBIO: Si llega un entero (resultado de note + 1), convertir a nota string
-        if isinstance(val, int):
-            val = self._int_a_nota(val)
+            # --- NUEVA VALIDACIÓN: Bloquear negativos explícitamente ---
+            if isinstance(val, int) and val < 0:
+                if self.DEBUG: 
+                    print(f" [MÚSICA] Nota negativa detectada ({val}). Se ignorará porque no existe sonido negativo.")
+                return  # <--- Detenemos la ejecución aquí
+            # -----------------------------------------------------------
 
-        if not isinstance(val, str):
-            if self.DEBUG: print(f"[DEBUG] nota inválida ignorada: {val}")
-            return
-                
-        val = val.strip()
-        # Validar formato
-        if re.match(r'^[A-Ga-g][#b]?\d*$', val):
-            self.output_notes.append(val)
-            self.note_added += 1
-            if self.DEBUG: print(f"[DEBUG] Nota agregada: {val}")
-        else:
-            if self.DEBUG: print(f"[DEBUG] formato nota inválido: {val}")
+            # Si llega un entero positivo, convertir a nota string
+            if isinstance(val, int):
+                val = self._int_a_nota(val)
 
+            if not isinstance(val, str):
+                if self.DEBUG: print(f"[DEBUG] nota inválida ignorada: {val}")
+                return
+                    
+            val = val.strip()
+            
+            # Validar formato con Regex
+            if re.match(r'^[A-Ga-g][#b]?\d*$', val):
+                self.output_notes.append(val)
+                self.note_added += 1
+                if self.DEBUG: print(f"[DEBUG] Nota agregada: {val}")
+            else:
+                if self.DEBUG: print(f"[DEBUG] formato nota inválido: {val}")
     # -----------------------------
     # LILYPOND & TIMIDITY
     # -----------------------------
@@ -536,7 +572,7 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
         
         with open(ruta_ly_abs, "w", encoding="utf-8") as f:
             f.write(contenido)
-        print(f"✅ LilyPond generado: {ruta_ly_abs}")
+        print(f" LilyPond generado: {ruta_ly_abs}")
 
     def render_musica(self, base_path_abs):
             """
@@ -545,11 +581,11 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
             """
             # 1. Validaciones iniciales
             if not shutil.which("lilypond"):
-                print("⚠️ Lilypond no instalado.")
+                print(" Lilypond no instalado.")
                 return
 
             if not shutil.which("timidity"):
-                print("⚠️ Timidity no instalado.")
+                print(" Timidity no instalado.")
                 return
 
             # 2. Generar Partitura (LilyPond)
@@ -562,7 +598,7 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
                     stderr=subprocess.DEVNULL
                 )
             except Exception as e:
-                print(f"❌ Error LilyPond: {e}")
+                print(f" Error LilyPond: {e}")
                 return
 
             # 3. Preparar nombres de archivo
@@ -575,12 +611,12 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
             wav_full = base_path_abs + ".wav"
 
             if not os.path.exists(midi_full):
-                print(f"⚠️ MIDI no generado.")
+                print(f" MIDI no generado.")
                 return
 
             # 4. VALIDAR Y PREPARAR SOUNDFONT (LA CORRECCIÓN)
             if not os.path.exists(self.SF2_PATH):
-                print(f"❌ Error Crítico: No existe {self.SF2_PATH}")
+                print(f" Error Crítico: No existe {self.SF2_PATH}")
                 return
 
             # --- MAGIA PARA WINDOWS ---
@@ -604,12 +640,12 @@ class AlgoritmiaExecutor(AlgoritmiaVisitor):
                     stdout=subprocess.DEVNULL, # Silencio si todo va bien
                     stderr=subprocess.PIPE     # Capturamos error si falla
                 )
-                print(f"✅ WAV generado correctamente: {wav_full}")
+                print(f" WAV generado correctamente: {wav_full}")
 
             except subprocess.CalledProcessError as e:
                 # Si falla, imprimimos el error real de Timidity
                 err_msg = e.stderr.decode('utf-8', errors='ignore')
-                print(f"❌ Error Timidity: {err_msg}")
+                print(f" Error Timidity: {err_msg}")
             finally:
                 # Borramos el archivo temporal
                 if os.path.exists(temp_cfg_path):
